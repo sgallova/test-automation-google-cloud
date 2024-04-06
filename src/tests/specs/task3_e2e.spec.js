@@ -7,11 +7,10 @@ const searchPage = new SearchPage();
 const calculatorPage = new CalculatorPage();
 
 describe("Testsuite for checking the workflow of tasks 3 & 4", () => {
-  beforeEach(async () => {
-    await homePage.open();
-  });
+
 
   it("should search for a legacy calculator on the Google cloud page", async () => {
+    await homePage.open();
     await homePage.header.searchIcon.click();
     await homePage.header.searchBar.setValue(
       "Google Cloud Platform Pricing Calculator"
@@ -26,11 +25,14 @@ describe("Testsuite for checking the workflow of tasks 3 & 4", () => {
 
     //Assertion--> verify that the item Calculator legacy is listed in the search result
     await expect(
-      searchPage.searchComponent.item("calculator_legacy")
+      await searchPage.searchComponent.item("calculator_legacy")
     ).toBeDisplayed();
 
-    it("should use the calculator to request an estimation for compute engine")
+  });
+
+  it("should use the calculator to request an estimation for compute engine", async () => {
     // Go to the calculator page (legacy)
+    await searchPage.searchComponent.item("calculator_legacy").waitForClickable({timeout:5000});
     await searchPage.searchComponent.item("calculator_legacy").click();
 
     // wait for  the browser to be redirected to Calculator and the page to be fully loaded
@@ -40,7 +42,6 @@ describe("Testsuite for checking the workflow of tasks 3 & 4", () => {
     });
 
     //Accesing to iFrames that contain the form
-    await calculatorPage.computeFormComponent.iFrameParent.scrollIntoView();
     await browser.switchToFrame(await calculatorPage.computeFormComponent.iFrameParent);
     await browser.switchToFrame(await calculatorPage.computeFormComponent.iFrameChild);
    
@@ -48,18 +49,39 @@ describe("Testsuite for checking the workflow of tasks 3 & 4", () => {
     // Fillout the form
     await calculatorPage.computeFormComponent.numInstances.setValue("4");
     await calculatorPage.computeFormComponent.seriesDropdown.click();
-    await calculatorPage.computeFormComponent.seriesN1Option.click();
-
-   /* await calculatorPage.computeFormComponent.machineType.selectAttribute("value", "CP-COMPUTEENGINE-VMIMAGE-N1-STANDARD-8");
-    await calculatorPage.computeFormComponent.gpuCheck.click();
-    await calculatorPage.computeFormComponent.gpuType.selectByVisibleText("NVIDIA Tesla V100");
-    await calculatorPage.computeFormComponent.gpuNumber.selectByVisibleText("1");
-    await calculatorPage.computeFormComponent.localSSD.selectByVisibleText("2x375 GB");
-    await calculatorPage.computeFormComponent.datacenterLocation.selectAttribute("value", "europe-west3");
-    await calculatorPage.computeFormComponent.committedUsage.selectByVisibleText("1 Year");*/
-
-  
  
+    await calculatorPage.computeFormComponent.seriesN1Option.waitForClickable({timeout:5000});
+    await calculatorPage.computeFormComponent.seriesN1Option.click();
+  
+    await calculatorPage.computeFormComponent.machineType.click();
+    await calculatorPage.computeFormComponent.machineS8Option.waitForClickable({timeout:5000});
+    await calculatorPage.computeFormComponent.machineS8Option.click();
+
+    await calculatorPage.computeFormComponent.gpuCheck.click();
+
+    await calculatorPage.computeFormComponent.gpuType.click();
+    await calculatorPage.computeFormComponent.gpuTypeT4Option.waitForClickable({timeout:5000});
+    await calculatorPage.computeFormComponent.gpuTypeT4Option.click();
+
+    await calculatorPage.computeFormComponent.gpuNumber.click();
+    await calculatorPage.computeFormComponent.gpuNumberOne.waitForClickable({timeout:5000});
+    await calculatorPage.computeFormComponent.gpuNumberOne.click();
+   
+    await calculatorPage.computeFormComponent.localSSD.click();
+    await calculatorPage.computeFormComponent.localSSDTwo.waitForClickable({timeout:5000});
+    await calculatorPage.computeFormComponent.localSSDTwo.click();
+
+    await calculatorPage.computeFormComponent.committedUsage.click();
+    await calculatorPage.computeFormComponent.comittedOneYear.waitForClickable({timeout:5000});
+    await calculatorPage.computeFormComponent.comittedOneYear.click();
+
+
+    await calculatorPage.computeFormComponent.addEstimateBtn.waitForClickable({timeout:5000});
+    await calculatorPage.computeFormComponent.addEstimateBtn.click();
+
+    //Assertion--> After sending the estimation, the form is cleaned up
+    browser.switchToFrame(null);
+    expect(await calculatorPage.computeFormComponent.numInstances).toHaveValue("");
 
   });
 });

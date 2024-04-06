@@ -30,12 +30,15 @@ class ComputeFormComponent {
   }
 
   get seriesN1Option() {
-    return $('md-option[value="n1"]');
+    return $('md-option#select_option_224');
   }
-
 
   get machineType() {
     return $('md-select[ng-model="listingCtrl.computeServer.instance"]');
+  }
+
+  get machineS8Option() {
+    return $('//div[@class="md-select-menu-container md-active md-clickable"]//md-option[@value="CP-COMPUTEENGINE-VMIMAGE-N1-STANDARD-8"]');
   }
 
   get gpuCheck() {
@@ -46,12 +49,24 @@ class ComputeFormComponent {
     return $('md-select[ng-model="listingCtrl.computeServer.gpuType"]');
   }
 
+  get gpuTypeT4Option() {
+    return $('md-option[value="NVIDIA_TESLA_T4"]');
+  }
+
   get gpuNumber() {
     return $('md-select[ng-model="listingCtrl.computeServer.gpuCount"]');
   }
 
+  get gpuNumberOne() {
+    return $('md-option[ng-repeat="item in listingCtrl.supportedGpuNumbers[listingCtrl.computeServer.gpuType]"][value="1"]');
+  }
+
   get localSSD() {
     return $('md-select[ng-model="listingCtrl.computeServer.ssd"]');
+  }
+
+  get localSSDTwo() {
+    return $('md-option#select_option_495');
   }
 
   get datacenterLocation() {
@@ -60,6 +75,14 @@ class ComputeFormComponent {
 
   get committedUsage() {
     return $('md-select[ng-model="listingCtrl.soleTenant.cud"]');
+  }
+
+  get comittedOneYear() {
+    return $('//div[@class="md-select-menu-container md-active md-clickable"]//md-option[@value="1"]');
+  }
+
+  get addEstimateBtn(){
+    return $('button[ng-click="listingCtrl.addComputeServer(ComputeEngineForm);"]')
   }
 }
 
