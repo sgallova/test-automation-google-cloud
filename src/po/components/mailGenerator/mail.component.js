@@ -1,10 +1,14 @@
 class MailComponent {
   get randomMail() {
-    return $('//span[@class="genytxt"]/script');
+    return $('//span[@class="genytxt"]');
   }
 
   get inboxBtn() {
-    return $('//span[text()="Check Inbox"]/..');
+    return $$('button[class="md but text f24 egenbut"]')[2];
+  }
+
+  get cost() {
+    return $$("table")[1].$("tbody").$("tr")[1].$("td")[4];
   }
 }
 

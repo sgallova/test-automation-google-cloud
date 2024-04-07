@@ -1,14 +1,11 @@
-class HeaderComponent{
+class HeaderComponent {
+  get searchIcon() {
+    return $('[jsname="Ohx1pb"]');
+  }
 
-get searchIcon(){
-    return $('[jsname="Ohx1pb"]')
+  get searchBar() {
+    return $('input[placeholder="Search"]');
+  }
 }
 
-get searchBar(){
-    return $('input[placeholder="Search"]')
-}
-
-
-}
-
-module.exports=HeaderComponent
+module.exports = HeaderComponent;

@@ -1,10 +1,12 @@
 class EmailModalComponent {
   get emailField() {
-    return $("//md-dialog-actions/input[2]");
+    return $('input[ng-model="emailQuote.user.email"]');
   }
 
   get sendEmailBtn() {
-    return $('//*[@id="input_603"]');
+    return $(
+      'button[ng-click="emailQuote.emailQuote(true); emailQuote.$mdDialog.hide()"]'
+    );
   }
 }
 

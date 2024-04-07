@@ -1,13 +1,11 @@
-class EstimationComponent{
+class EstimationComponent {
+  get totalCost() {
+    return $('//div[@class="cpc-cart-total"]//b[@class="ng-binding"]');
+  }
 
-    get totalCost(){
-        return $('//div[@class="cpc-cart-total"]//b[@class="ng-binding"]');
-    }
-
-    get emailBtn(){
-        return $('button[id="Email Estimate"]');
-    }
-
+  get emailBtn() {
+    return $('button[id="Email Estimate"]');
+  }
 }
 
-module.exports= EstimationComponent
+module.exports = EstimationComponent;

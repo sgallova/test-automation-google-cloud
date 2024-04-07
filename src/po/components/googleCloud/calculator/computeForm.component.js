@@ -1,12 +1,13 @@
 class ComputeFormComponent {
-
-  get iFrameParent(){
-    return $('iframe[src^="https://cloud.google.com/frame/products/calculator-legacy"]');
+  get iFrameParent() {
+    return $(
+      'iframe[src^="https://cloud.google.com/frame/products/calculator-legacy"]'
+    );
   }
-  get iFrameChild(){
-    return $('#myFrame');
+  get iFrameChild() {
+    return $("#myFrame");
   }
-  get computeEngine(){
+  get computeEngine() {
     return $('//span[text()="Compute Engine"]/../../..');
   }
   get numInstances() {
@@ -26,11 +27,11 @@ class ComputeFormComponent {
   }
 
   get seriesDropdown() {
-    return $('#select_value_label_95');
+    return $("#select_value_label_95");
   }
 
   get seriesN1Option() {
-    return $('md-option#select_option_224');
+    return $("md-option#select_option_224");
   }
 
   get machineType() {
@@ -38,7 +39,9 @@ class ComputeFormComponent {
   }
 
   get machineS8Option() {
-    return $('//div[@class="md-select-menu-container md-active md-clickable"]//md-option[@value="CP-COMPUTEENGINE-VMIMAGE-N1-STANDARD-8"]');
+    return $(
+      '//div[@class="md-select-menu-container md-active md-clickable"]//md-option[@value="CP-COMPUTEENGINE-VMIMAGE-N1-STANDARD-8"]'
+    );
   }
 
   get gpuCheck() {
@@ -58,7 +61,9 @@ class ComputeFormComponent {
   }
 
   get gpuNumberOne() {
-    return $('md-option[ng-repeat="item in listingCtrl.supportedGpuNumbers[listingCtrl.computeServer.gpuType]"][value="1"]');
+    return $(
+      'md-option[ng-repeat="item in listingCtrl.supportedGpuNumbers[listingCtrl.computeServer.gpuType]"][value="1"]'
+    );
   }
 
   get localSSD() {
@@ -66,7 +71,7 @@ class ComputeFormComponent {
   }
 
   get localSSDTwo() {
-    return $('md-option#select_option_495');
+    return $("md-option#select_option_495");
   }
 
   get datacenterLocation() {
@@ -78,11 +83,15 @@ class ComputeFormComponent {
   }
 
   get comittedOneYear() {
-    return $('//div[@class="md-select-menu-container md-active md-clickable"]//md-option[@value="1"]');
+    return $(
+      '//div[@class="md-select-menu-container md-active md-clickable"]//md-option[@value="1"]'
+    );
   }
 
-  get addEstimateBtn(){
-    return $('button[ng-click="listingCtrl.addComputeServer(ComputeEngineForm);"]')
+  get addEstimateBtn() {
+    return $(
+      'button[ng-click="listingCtrl.addComputeServer(ComputeEngineForm);"]'
+    );
   }
 }
 

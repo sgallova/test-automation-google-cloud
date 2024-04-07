@@ -1,15 +1,15 @@
-class MailPage{
+const MailComponent = require("../../components/mailGenerator/mail.component");
 
-    constructor(){
-        this.mailComponent= new MailComponent();
-    }
+class MailPage {
+  constructor(url, match) {
+    this.url = url;
+    this.match = match;
+    this.mailComponent = new MailComponent();
+  }
 
-    open(){
-        browser.url("https://yopmail.com/email-generator");
-    }
-
-
-  
-
-
+  open() {
+    browser.url(this.url);
+  }
 }
+
+module.exports = MailPage;
