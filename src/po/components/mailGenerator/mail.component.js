@@ -8,8 +8,17 @@ class MailComponent {
   }
 
   get cost() {
-    return $$("table")[1].$("tbody").$("tr")[1].$("td")[4];
+    return $$('h3')[1];
   }
+
+  get add(){
+    return $('iframe#ad_iframe');
+  }
+
+  get inboxIframe(){
+    return $('iframe#ifmail');
+  }
+
 }
 
 module.exports = MailComponent;

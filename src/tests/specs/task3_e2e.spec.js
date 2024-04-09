@@ -150,7 +150,7 @@ describe("Testsuite for checking the workflow of tasks 3 & 4", () => {
     await browser.pause(2000);
 
     if(await browser.getUrl()==="https://yopmail.com/email-generator#google_vignette"){
-      throw new Error("Ad On displayed. The test couldn't be completed")
+      throw new Error("There's an Ad On blocking the test execution. Re launch the test")
     }else{
       await mailPage.mailComponent.inboxBtn.waitForClickable({
         timeout: 5000,
@@ -158,10 +158,14 @@ describe("Testsuite for checking the workflow of tasks 3 & 4", () => {
   
       await mailPage.mailComponent.inboxBtn.click();
 
+      await browser.switchToFrame(
+        await mailPage.mailComponent.inboxIframe
+      );
+
       //check that the emailed 'Total Estimated Monthly Cost' matches the result in the calculator.
-     /* expect(await mailPage.mailComponent.cost.getText()).toEqual(
-        "USD " + amount
-      );*/
+   expect(await mailPage.mailComponent.cost.getText()).toEqual(
+        "USD " +amount
+      );
 
     }  
   });
